@@ -1,9 +1,8 @@
-# Let's rock
 FROM php:5.6-fpm
 
-MAINTAINER moo
+MAINTAINER Magnus Lindvall <magnus@dnmgns.com>
 
-# Update packs
+# update dist
 RUN apt-get update && apt-get install -y rsync && rm -r /var/lib/apt/lists/*
 
 # install the PHP extensions we need
@@ -14,9 +13,9 @@ RUN apt-get update && apt-get install -y libpng12-dev && rm -rf /var/lib/apt/lis
 # install mysql connector module
 RUN docker-php-ext-install mysqli
 
-# Add www volume
+# add www volume
 VOLUME /var/www/
 WORKDIR /var/www/
 
-# Move to the directory were the php files stands
+# run php fpm
 CMD ["php-fpm"]
